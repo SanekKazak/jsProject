@@ -47,7 +47,7 @@ h1, h2 {
   text-align: center;
 }
 
-.task-form, .task-list {
+.task-form, .task-table, .task-list {
   margin-bottom: 20px;
 }
 
@@ -91,6 +91,21 @@ button:hover {
 
 .task-card p {
   margin: 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
 }
 
 @keyframes App-logo-spin {
