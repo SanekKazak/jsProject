@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchTasks, fetchUsers } from './Api';
+import { setTasks, setUsers } from './store/Actions';
 import TaskForm from './components/TaskForm';
 import TaskTable from './components/TaskTable';
 import TaskList from './components/TaskList';
@@ -9,8 +11,18 @@ import Register from './components/Register';
 import './App.css';
 
 function App() {
+  const dispatch = useDispatch();
   const tasks = useSelector((state) => state.tasks);
   const user = useSelector((state) => state.user.user);
+
+  useEffect(() => {
+    fetchTasks().then((tasks) => {
+      dispatch(setTasks(tasks));
+    });
+    fetchUsers().then((users) => {
+      dispatch(setUsers(users));
+    });
+  }, [dispatch]);
 
   return (
     <Router>
