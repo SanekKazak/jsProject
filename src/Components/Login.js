@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { setUser } from '../store/Actions';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const users = useSelector((state) => state.user.users);
 
@@ -16,14 +16,14 @@ function Login() {
     const user = users.find(u => u.email === email && u.password === password);
     if (user) {
       dispatch(setUser(user));
-      history.push('/tasks');
+      navigate('/tasks');
     } else {
       setError('Invalid email or password');
     }
   };
 
   const handleRegister = () => {
-    history.push('/register');
+    navigate('/register');
   };
 
   return (

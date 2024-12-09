@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { addUser } from '../store/Actions';
 
 function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const users = useSelector((state) => state.user.users);
 
@@ -18,7 +18,7 @@ function Register() {
     } else {
       const newUser = { email, password };
       dispatch(addUser(newUser));
-      history.push('/login');
+      navigate('/login');
     }
   };
 
